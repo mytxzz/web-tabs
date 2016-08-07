@@ -25,10 +25,31 @@ html
 ```
 javascript
 ```javascript
+//init
 $('.tabs').tabs({
     navSelector: '.nav li',//nav btn selector
     showName: null,//the default showing panel class name
     activeClass: 'active',//selected nav btn classname
     menuAttr: 'name'//nav btn's attribute to link the showing panel
 });
+```
+
+#API & EVENT
+
+## ATTENTION
+the following api and event functions must be called after init 
+
+javascript
+```javascript
+    //api
+    var tabsInstance = $('.tabs').getTabs();
+    tabsInstance.show('panel3');
+    
+    //event
+    $('.tabs').on('tabs:show', function(ev, prename, curname) {
+        console.log(prename, curname);
+    })
+    $('.tabs').on('tabs:hide', function(ev, name) {
+        console.log(name);
+    })
 ```
