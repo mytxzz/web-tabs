@@ -1,5 +1,5 @@
 # web-tabs
-a web tabs plugin based on Jquey or Zepto
+a web tabs plugin based on jQuey or Zepto
 
 # demo online
 [tabs](http://dannyliou.github.io/demos/tabs/tabs.html)
