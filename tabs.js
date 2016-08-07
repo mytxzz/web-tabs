@@ -72,7 +72,7 @@
     $.fn.tabs = function(ops) {
         this.each(function() {
             var tabs = new Tabs($(this), ops);
-            //暴露API
+            // expose the API
             this.getTabs = function () {
                 return tabs
             }
