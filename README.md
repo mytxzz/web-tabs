@@ -1,5 +1,5 @@
 # web-tabs
-a web tabs plugin based on jQuey or Zepto
+a web tabs ui plugin based on jQuey or Zepto
 
 # demo online
 [tabs](http://dannyliou.github.io/demos/tabs/tabs.html)
@@ -16,11 +16,11 @@ html
             <li name="panel4">TAB4</li>
             <li name="panel5">TAB5</li>
         </ul>
-        <div class="panel1">TAB1对应的页面</div>
-        <div class="panel2">TAB2对应的页面</div>
-        <div class="panel3">TAB3对应的页面</div>
-        <div class="panel4">TAB4对应的页面</div>
-        <div class="panel5">TAB5对应的页面</div>
+        <div class="panel1">the panel of TAB1  (TAB1对应的页面)</div>
+        <div class="panel2">the panel of TAB2  (TAB2对应的页面)</div>
+        <div class="panel3">the panel of TAB3  (TAB3对应的页面)</div>
+        <div class="panel4">the panel of TAB4  (TAB4对应的页面)</div>
+        <div class="panel5">the panel of TAB5  (TAB5对应的页面)</div>
     </div>
 ```
 javascript
