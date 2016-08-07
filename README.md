@@ -25,5 +25,10 @@ html
 ```
 javascript
 ```javascript
-$('.tabs').tabs();
+$('.tabs').tabs({
+    navSelector: '.nav li',//nav btn selector
+    showName: null,//the default showing panel class name
+    activeClass: 'active',//selected nav btn classname
+    menuAttr: 'name'//nav btn's attribute to link the showing panel
+});
 ```
