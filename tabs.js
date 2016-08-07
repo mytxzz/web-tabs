@@ -1,7 +1,7 @@
 ;
 (function($) {
     var owner,
-        tabs = function($ele, ops) {
+        Tabs = function($ele, ops) {
             this.ops = $.extend({
                 navSelector: '.nav li',
                 showName: null,
@@ -43,12 +43,14 @@
             owner.show($(this).attr(owner.ops.menuAttr));
         })
     }
-    tabs.prototype = {
+    Tabs.prototype = {
         show: function(name) {
             if (name === this.ops.showName) return;
             this.tabs[this.ops.showName].hide()
+            this.$ele.trigger('tabs:hide', [this.ops.showName]);
+            this.tabs[name].show();
+            this.$ele.trigger('tabs:show', [this.ops.showName, name]);
             this.ops.showName = name;
-            this.tabs[name].show()
         }
     }
 
@@ -69,7 +71,15 @@
     }
     $.fn.tabs = function(ops) {
         this.each(function() {
-            new tabs($(this), ops);
+            var tabs = new Tabs($(this), ops);
+            //暴露API
+            this.getTabs = function () {
+                return tabs
+            }
         });
     }
 })(window.jQuery || window.Zepto)
+
+
+
+
