@@ -1,6 +1,5 @@
 ;
 (function($) {
-    var owner,
         Tabs = function($ele, ops) {
             this.ops = $.extend({
                 navSelector: '.nav li',
@@ -11,11 +10,11 @@
             this.$ele = $ele;
             this.tabs = {} //cach tab
             owner = this;
-            init();
-            bindSwitchEvent();
+            init(owner);
+            bindSwitchEvent(owner);
         }
 
-    function init() {
+    function init(owner) {
         var $menus = $(owner.ops.navSelector, owner.$ele),
             menuAttr = owner.ops.menuAttr;
         //init the first showname
@@ -38,7 +37,7 @@
         });
     }
 
-    function bindSwitchEvent() {
+    function bindSwitchEvent(owner) {
         owner.$ele.on('click', owner.ops.navSelector, function(ev) {
             owner.show($(this).attr(owner.ops.menuAttr));
         })
