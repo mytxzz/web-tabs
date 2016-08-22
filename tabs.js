@@ -1,18 +1,18 @@
 ;
 (function($) {
-        Tabs = function($ele, ops) {
-            this.ops = $.extend({
-                navSelector: '.nav li',
-                showName: null,
-                activeClass: 'active',
-                menuAttr: 'name'
-            }, ops || {});
-            this.$ele = $ele;
-            this.tabs = {} //cach tab
-            owner = this;
-            init(owner);
-            bindSwitchEvent(owner);
-        }
+    Tabs = function($ele, ops) {
+        this.ops = $.extend({
+            navSelector: '.nav li',
+            showName: null,
+            activeClass: 'active',
+            menuAttr: 'name',
+            canToggle:false
+        }, ops || {});
+        this.$ele = $ele;
+        this.tabs = {} //cach tab
+        init(this);
+        bindSwitchEvent(this);
+    }
 
     function init(owner) {
         var $menus = $(owner.ops.navSelector, owner.$ele),
@@ -44,10 +44,17 @@
     }
     Tabs.prototype = {
         show: function(name) {
-            if (name === this.ops.showName) return;
-            this.tabs[this.ops.showName].hide()
+            var curTab = this.tabs[this.ops.showName];
+            if (name === this.ops.showName) {
+                if (this.ops.canToggle) {
+                    curTab && curTab.hide();
+                    this.ops.showName = 'none';
+                }
+                return;
+            };
+            curTab && curTab.hide()
             this.$ele.trigger('tabs:hide', [this.ops.showName]);
-            this.tabs[name].show();
+            this.tabs[name] &&this.tabs[name].show();
             this.$ele.trigger('tabs:show', [this.ops.showName, name]);
             this.ops.showName = name;
         }
@@ -61,24 +68,20 @@
     tab.prototype = {
         show: function() {
             this.$menu.addClass(this.ops.activeClass);
-            this.$panel.show();
+            (this.$panel.length > 0) && this.$panel.show();
         },
         hide: function() {
             this.$menu.removeClass(this.ops.activeClass);
-            this.$panel.hide();
+            (this.$panel.length > 0) && this.$panel.hide();
         }
     }
     $.fn.tabs = function(ops) {
         this.each(function() {
             var tabs = new Tabs($(this), ops);
             // expose the API
-            this.getTabs = function () {
+            this.getTabsInstance = function() {
                 return tabs
             }
         });
     }
 })(window.jQuery || window.Zepto)
-
-
-
-
